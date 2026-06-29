@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cash Course</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .font-display { font-family: 'Fraunces', serif; }
+    .module-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+    .module-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(20,90,74,0.15); }
+    .hero-overlay { background: linear-gradient(160deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.8) 60%, rgba(51,65,85,0.4) 100%); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; pointer-events: none; }
+    .lesson-card { border-left: 3px solid #34d399; }
+    .tip-box { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #6ee7b7; }
+    .warning-box { background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 1px solid #fdba74; }
+    .progress-step { counter-increment: step; }
+    .progress-step::before { content: counter(step); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #065f46; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .steps-list { counter-reset: step; }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .chevron { transform: rotate(180deg); }
+    .chevron { transition: transform 0.2s; }
+  </style>
+</head>
+<body class="w-full min-h-screen" style="background: rgb(250, 253, 249);">
+
+  <!-- Main Content -->
+  <div id="main-view">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b border-emerald-100">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <span class="font-display text-xl font-bold" style="color: rgb(20, 90, 74);">cash course</span>
+        <div class="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#about" class="hover:text-emerald-700 transition-colors">About</a>
+          <a href="#modules" class="hover:text-emerald-700 transition-colors">Learn</a>
+          <a href="#contact" class="hover:text-emerald-700 transition-colors">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative w-full overflow-hidden" style="min-height: 90vh;">
+      <img class="absolute inset-0 w-full h-full object-cover scale-105" loading="lazy" src="https://images.pexels.com/photos/4056856/pexels-photo-4056856.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Financial literacy hero">
+      <div class="hero-overlay absolute inset-0"></div>
+      <div class="blob w-96 h-96 bg-slate-400 top-10 -left-20"></div>
+      <div class="blob w-72 h-72 bg-slate-300 bottom-20 right-10"></div>
+      <div class="relative z-10 flex flex-col items-center justify-center text-center px-6" style="min-height: 90vh;">
+        <h1 class="font-display text-white mb-5 animate-fade-up" style="font-size: clamp(36px, 6vw, 64px); font-weight: 900;">Your Money. Your Future. No Judgement.</h1>
+        <p class="text-white/90 max-w-2xl mx-auto mb-10 animate-fade-up delay-2" style="font-size: 19px;">Cash Course is a judgement-free zone filling the gaps in financial literacy that 75% of young adults experience. Learn the practical skills school never taught you.</p>
+        <a href="#modules" class="inline-block px-10 py-4 rounded-full font-semibold transition-all hover:scale-105 shadow-lg shadow-emerald-900/30 animate-fade-up delay-3" style="background: rgb(52, 211, 153); color: rgb(6, 78, 59); font-size: 17px;">Explore Modules</a>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="w-full py-24 px-6 relative overflow-hidden">
+      <div class="blob w-80 h-80 bg-slate-200 -top-20 -right-20"></div>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="font-display mb-6" style="color: rgb(20, 90, 74); font-size: 36px; font-weight: 700;">Who We Are</h2>
+        <p class="mb-4 leading-relaxed max-w-3xl mx-auto" style="color: rgb(55, 65, 81); font-size: 16px;">Cash Course (a play on words for crash course) is a nonprofit dedicated to spreading financial literacy to young adults. We tackle topics that school doesn't prepare you for — in a space where no question is too basic and no situation is too awkward to discuss.</p>
+        <p class="leading-relaxed max-w-3xl mx-auto" style="color: rgb(55, 65, 81); font-size: 16px;">25% of young adults don't have a trusted adult to turn to for financial guidance. We're here to change that — one module at a time.</p>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl" style="background: rgb(236, 253, 245);">
+            <p class="font-display text-3xl font-bold" style="color: rgb(6, 95, 70);">75%</p>
+            <p class="mt-1" style="color: rgb(55, 65, 81); font-size: 14px;">of young adults lack financial literacy</p>
+          </div>
+          <div class="p-6 rounded-2xl" style="background: rgb(236, 253, 245);">
+            <p class="font-display text-3xl font-bold" style="color: rgb(6, 95, 70);">25%</p>
+            <p class="mt-1" style="color: rgb(55, 65, 81); font-size: 14px;">don't have a trusted adult for guidance</p>
+          </div>
+          <div class="p-6 rounded-2xl" style="background: rgb(236, 253, 245);">
+            <p class="font-display text-3xl font-bold" style="color: rgb(6, 95, 70);">6</p>
+            <p class="mt-1" style="color: rgb(55, 65, 81); font-size: 14px;">core learning modules available</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modules -->
+    <section id="modules" class="w-full py-24 px-6" style="background: rgb(240, 253, 244);">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-display text-center mb-4" style="color: rgb(20, 90, 74); font-size: 36px; font-weight: 700;">Learning Modules</h2>
+        <p class="text-center mb-14 max-w-2xl mx-auto" style="color: rgb(75, 85, 99); font-size: 16px;">Bite-sized, practical lessons designed for real life. Pick a topic and start learning at your own pace.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-1" onclick="showModule('personal-finance')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/4056856/pexels-photo-4056856.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Piggy bank with coins">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Personal Finance</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Budgeting, saving, credit scores, and managing your money day-to-day.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-2" onclick="showModule('income-employment')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/5439153/pexels-photo-5439153.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Woman shaking hands at office">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Income &amp; Employment</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Negotiating pay, understanding taxes, benefits, and building your career.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-3" onclick="showModule('financial-abuse')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/7659453/pexels-photo-7659453.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Diverse hands holding">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Financial Abuse</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Recognizing financial manipulation, protecting yourself, and finding support.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-4" onclick="showModule('long-term-planning')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/764293/pexels-photo-764293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Road at sunset">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Long Term Planning</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Investing, retirement, big purchases, and building generational wealth.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-5" onclick="showModule('mindset')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/35444736/pexels-photo-35444736.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Goal journal with sticky notes">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Mindset</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Overcoming money shame, building confidence, and shifting your relationship with finances.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+          <div class="module-card rounded-2xl overflow-hidden bg-white shadow-md animate-fade-up delay-6" onclick="showModule('misc')">
+            <img class="w-full h-48 object-cover" loading="lazy" src="https://images.pexels.com/photos/414648/pexels-photo-414648.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lightbulb on pastel background">
+            <div class="p-6">
+              <h3 class="font-display font-semibold mb-2" style="color: rgb(20, 90, 74); font-size: 19px;">Misc</h3>
+              <p class="text-sm leading-relaxed" style="color: rgb(75, 85, 99);">Everything else — insurance, scams, side hustles, and the random stuff nobody tells you.</p>
+              <span class="inline-flex items-center gap-1 mt-4 text-emerald-700 text-sm font-medium">Start Learning <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="w-full py-24 px-6" style="background: rgb(255, 255, 255);">
+      <div class="max-w-xl mx-auto">
+        <h2 class="font-display text-center mb-3" style="color: rgb(20, 90, 74); font-size: 36px; font-weight: 700;">Get In Touch</h2>
+        <p class="text-center mb-8" style="color: rgb(75, 85, 99);">Have a question, want to collaborate, or just want to say hi? Drop us a message.</p>
+        <form id="contact-form" class="space-y-5">
+          <div>
+            <label class="block text-sm font-medium mb-1" for="contact-name" style="color: rgb(55, 65, 81);">Name</label>
+            <input id="contact-name" type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" placeholder="Your name">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1" for="contact-email" style="color: rgb(55, 65, 81);">Email</label>
+            <input id="contact-email" type="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" placeholder="you@example.com">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1" for="contact-msg" style="color: rgb(55, 65, 81);">Message</label>
+            <textarea id="contact-msg" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 rounded-full font-semibold transition-all hover:scale-[1.02]" style="background: rgb(20, 90, 74); color: white;">Send Message</button>
+        </form>
+        <p id="form-success" class="hidden text-center mt-4 text-emerald-700 font-medium">Thank you! We'll be in touch soon. 💚</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 px-6 text-center" style="background: rgb(20, 90, 74);">
+      <p class="text-sm" style="color: rgb(167, 243, 208);">© 2026 Cash Course. Built with 💚 for young adults everywhere.</p>
+    </footer>
+  </div>
+
+  <!-- Module Detail View -->
+  <div id="module-view" class="hidden w-full min-h-screen" style="background: rgb(250, 253, 249);">
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b border-emerald-100">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
+        <button onclick="hideModule()" class="flex items-center gap-2 text-emerald-800 font-medium hover:text-emerald-600 transition-colors">
+          <i data-lucide="arrow-left" style="width:20px;height:20px;"></i> Back to Modules
+        </button>
+      </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-6 max-w-4xl mx-auto" id="module-detail-content">
+      <!-- Filled dynamically -->
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const modules = {
+
+      'personal-finance': {
+        title: 'Personal Finance',
+        emoji: '💰',
+        tag: 'The Foundation',
+        desc: 'Managing money day-to-day is a skill — and nobody is born knowing how to do it. This module covers the building blocks of a healthy financial life.',
+        lessons: [
+          {
+            title: 'Budgeting 101: Where Does Your Money Actually Go?',
+            icon: 'pie-chart',
+            content: `<p class="text-gray-600 mb-4">Before you can improve your finances, you have to know your numbers. Most people are surprised when they track their spending for the first time.</p>
+            <div class="steps-list space-y-4 mt-4">
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">List your income.</strong> Include every source: your job, side gigs, financial aid, etc. Use the take-home (after-tax) number.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">List your fixed expenses.</strong> Rent, phone bill, subscriptions — things that cost the same every month.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Track variable spending.</strong> Food, gas, going out — these change. Use your bank app or a notes app for one week.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Subtract expenses from income.</strong> If it's negative, something has to change. If it's positive, that's your starting point.</div>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4 mt-5">
+              <p class="font-semibold text-emerald-800 mb-1">💡 Try the 50/30/20 Rule</p>
+              <p class="text-sm text-gray-700">Spend 50% on needs (rent, food, bills), 30% on wants (dining out, entertainment), and save 20%. It's a starting point — not a law.</p>
+            </div>`
+          },
+          {
+            title: 'Saving: Building Your Safety Net',
+            icon: 'shield',
+            content: `<p class="text-gray-600 mb-4">An emergency fund is the most important financial tool you can have. It's what keeps one bad month from turning into a disaster.</p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Start with $500–$1,000.</strong> That covers most car repairs, medical copays, or unexpected bills.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Work toward 3–6 months of expenses.</strong> That's your real safety net if you lose your job.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Keep it in a high-yield savings account (HYSA).</strong> These earn 4–5% interest vs. 0.01% at big banks. Look into Ally, Marcus, or SoFi.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Automate it.</strong> Set a recurring transfer on payday so you save before you can spend it.</span></li>
+            </ul>`
+          },
+          {
+            title: 'Understanding Your Credit Score',
+            icon: 'trending-up',
+            content: `<p class="text-gray-600 mb-4">Your credit score is a number (300–850) that tells lenders how trustworthy you are with borrowed money. It affects your ability to rent an apartment, get a car loan, or even land some jobs.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="bg-white rounded-xl p-4 border border-emerald-100"><p class="font-semibold text-emerald-800 text-sm mb-1">35% — Payment History</p><p class="text-xs text-gray-600">Always pay on time. Even one missed payment hurts.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100"><p class="font-semibold text-emerald-800 text-sm mb-1">30% — Credit Utilization</p><p class="text-xs text-gray-600">Keep your credit card balance under 30% of your limit.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100"><p class="font-semibold text-emerald-800 text-sm mb-1">15% — Length of History</p><p class="text-xs text-gray-600">The longer you've had credit, the better. Don't close old cards.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100"><p class="font-semibold text-emerald-800 text-sm mb-1">10% — New Credit</p><p class="text-xs text-gray-600">Each new application causes a small, temporary dip.</p></div>
+            </div>
+            <div class="tip-box rounded-xl p-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 Check your score for free</p>
+              <p class="text-sm text-gray-700">Use Credit Karma, your bank's app, or annualcreditreport.com (the official free one). You're entitled to one free credit report per bureau per year.</p>
+            </div>`
+          }
+        ]
+      },
+
+      'income-employment': {
+        title: 'Income & Employment',
+        emoji: '💼',
+        tag: 'Get Paid What You\'re Worth',
+        desc: 'Your paycheck is more complicated than just the number on the offer letter. This module teaches you how to earn more, keep more, and understand the rules of the game.',
+        lessons: [
+          {
+            title: 'Reading Your Pay Stub',
+            icon: 'file-text',
+            content: `<p class="text-gray-600 mb-4">Most people never look at their pay stub beyond the final number. Here's what all those deductions actually mean.</p>
+            <div class="space-y-3">
+              <div class="bg-white rounded-xl p-4 border border-gray-100"><p class="font-semibold text-gray-800">Gross Pay</p><p class="text-sm text-gray-600">What you earned before anything is taken out. This is the "offer letter" number.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100"><p class="font-semibold text-gray-800">Federal & State Income Tax</p><p class="text-sm text-gray-600">Withheld based on your W-4. If too much is withheld, you get a refund. If too little, you owe in April.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100"><p class="font-semibold text-gray-800">FICA (Social Security + Medicare)</p><p class="text-sm text-gray-600">Always 7.65% of gross pay. Your employer matches this amount on your behalf.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100"><p class="font-semibold text-gray-800">Benefits Deductions</p><p class="text-sm text-gray-600">Health insurance, dental, 401(k) contributions — these come out pre-tax, which lowers your taxable income.</p></div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100 border-2"><p class="font-semibold text-emerald-800">Net Pay = Your Take-Home</p><p class="text-sm text-gray-600">Budget based on this number, not your gross salary.</p></div>
+            </div>`
+          },
+          {
+            title: 'Negotiating Your Salary',
+            icon: 'handshake',
+            content: `<p class="text-gray-600 mb-4">Negotiating is normal, expected, and one of the highest-return things you can do. Employees who negotiate earn an average of $5,000–$10,000 more per year.</p>
+            <div class="steps-list space-y-4 mt-4">
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Research the market rate first.</strong> Use Glassdoor, LinkedIn Salary, and Levels.fyi (for tech). Know the range before you walk in.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Let them make the first offer.</strong> If asked for your number first, say "I'd love to hear the range budgeted for this role."</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Counter at the top of the range.</strong> They expect you to negotiate. Asking high is not rude.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Negotiate more than salary.</strong> PTO, remote work, signing bonus, and start date are all fair game.</div>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4 mt-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 What to say</p>
+              <p class="text-sm text-gray-700">"Thank you so much for the offer — I'm really excited about this role. Based on my research and experience, I was hoping we could get closer to [X]. Is there flexibility there?"</p>
+            </div>`
+          },
+          {
+            title: 'Employee Benefits: Don\'t Leave Money on the Table',
+            icon: 'gift',
+            content: `<p class="text-gray-600 mb-4">Benefits are part of your total compensation. A job paying $55K with great benefits can be worth more than a $65K job with none.</p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>401(k) match:</strong> If your employer matches contributions, contribute at least enough to get the full match. It's a 100% return on that money — free money you're leaving on the table if you skip it.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Health insurance:</strong> Compare the premium, deductible, and out-of-pocket maximum. A cheaper monthly plan isn't always better if you actually use healthcare.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>FSA/HSA:</strong> Pre-tax accounts for medical expenses. HSAs are especially powerful — they're triple tax-advantaged and roll over forever.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>PTO and sick leave:</strong> Understand the difference between "unlimited" PTO (often people take less) and accrual-based PTO that pays out when you leave.</span></li>
+            </ul>`
+          }
+        ]
+      },
+
+      'financial-abuse': {
+        title: 'Financial Abuse',
+        emoji: '🛡️',
+        tag: 'Know Your Rights',
+        desc: 'Financial abuse is one of the most common and least talked-about forms of control. Recognizing it is the first step to protecting yourself.',
+        lessons: [
+          {
+            title: 'What Is Financial Abuse?',
+            icon: 'alert-triangle',
+            content: `<p class="text-gray-600 mb-4">Financial abuse happens when someone uses money or economic resources to control, manipulate, or harm another person. It can happen in romantic relationships, families, workplaces, or even friendships.</p>
+            <div class="warning-box rounded-xl p-5 mb-4">
+              <p class="font-semibold text-orange-800 mb-2">Common signs of financial abuse:</p>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• Controlling what you spend and demanding receipts or explanations for purchases</li>
+                <li>• Refusing to let you work, sabotaging your job, or taking your paycheck</li>
+                <li>• Opening accounts or taking out loans in your name without your knowledge</li>
+                <li>• Hiding income, assets, or financial information from you</li>
+                <li>• Creating debt in your name to make you financially dependent</li>
+                <li>• Using your Social Security Number or identity without permission</li>
+              </ul>
+            </div>
+            <p class="text-gray-600 text-sm">Financial abuse often works alongside emotional or physical abuse — it's a way of trapping someone so they feel they can't leave. But it can also happen on its own.</p>`
+          },
+          {
+            title: 'Protecting Your Financial Identity',
+            icon: 'lock',
+            content: `<p class="text-gray-600 mb-4">Whether you're in a difficult situation now or want to protect yourself for the future, these steps matter.</p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Have your own bank account.</strong> In your name only, at a bank the other person doesn't have access to.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:16px;"></i><span><strong>Monitor your credit.</strong> Check annualcreditreport.com for accounts you didn't open. This is how you spot identity theft.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Keep copies of important documents.</strong> Social Security card, birth certificate, ID, financial statements. Store them somewhere safe (a trusted friend, a safety deposit box, or a secure cloud folder).</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Know your credit freeze options.</strong> You can freeze your credit for free at all three bureaus (Experian, Equifax, TransUnion) to stop new accounts from being opened in your name.</span></li>
+            </ul>`
+          },
+          {
+            title: 'Finding Support & Resources',
+            icon: 'heart',
+            content: `<p class="text-gray-600 mb-4">You don't have to figure this out alone. There are people specifically trained to help with financial abuse situations — without judgment.</p>
+            <div class="space-y-3">
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800">National Domestic Violence Hotline</p>
+                <p class="text-sm text-gray-600 mb-1">1-800-799-7233 | Text START to 88788</p>
+                <p class="text-xs text-gray-500">Confidential support, safety planning, and local resources including financial assistance.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800">Consumer Financial Protection Bureau (CFPB)</p>
+                <p class="text-sm text-gray-600 mb-1">consumerfinance.gov</p>
+                <p class="text-xs text-gray-500">Free tools for disputing fraudulent accounts, identity theft recovery, and understanding your rights.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800">Local Legal Aid</p>
+                <p class="text-sm text-gray-600 mb-1">lawhelp.org</p>
+                <p class="text-xs text-gray-500">Free or low-cost legal help for financial abuse situations, including divorce, guardianship, and fraud recovery.</p>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4 mt-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 If you need to browse privately</p>
+              <p class="text-sm text-gray-700">Use incognito mode and delete your browser history if you're concerned about someone monitoring your device. You can also use a library computer.</p>
+            </div>`
+          }
+        ]
+      },
+
+      'long-term-planning': {
+        title: 'Long Term Planning',
+        emoji: '🌱',
+        tag: 'Your Future Self Will Thank You',
+        desc: 'The best time to start thinking long-term was yesterday. The second best time is right now. This module breaks down the big stuff — investing, retirement, and building lasting wealth.',
+        lessons: [
+          {
+            title: 'Investing 101: Why You Can\'t Just Save',
+            icon: 'bar-chart-2',
+            content: `<p class="text-gray-600 mb-4">Inflation averages about 3% per year. If your savings account earns 0.01%, your money is actually losing purchasing power. Investing is how you fight back.</p>
+            <div class="steps-list space-y-4 mt-4">
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Understand compound growth.</strong> $1,000 invested at 7% average return doubles roughly every 10 years — without adding a single dollar more. Time is your biggest asset.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Start with index funds.</strong> Instead of picking individual stocks, index funds invest in hundreds of companies at once. Lower risk, lower fees, and historically strong returns.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Use tax-advantaged accounts first.</strong> Max your 401(k) match, then consider a Roth IRA. These accounts let your money grow tax-free or tax-deferred.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Don't try to time the market.</strong> "Time in the market beats timing the market." Invest consistently and don't panic sell when things dip.</div>
+              </div>
+            </div>`
+          },
+          {
+            title: 'Retirement Accounts Explained Simply',
+            icon: 'umbrella',
+            content: `<p class="text-gray-600 mb-4">Retirement feels far away — but the math heavily rewards starting early. Here's what the main account types actually mean.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800 mb-1">401(k) / 403(b)</p>
+                <p class="text-xs text-gray-600">Offered by employers. Contributions come out pre-tax (traditional) or after-tax (Roth). Many employers match a portion — always grab the full match first.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800 mb-1">Roth IRA</p>
+                <p class="text-xs text-gray-600">You contribute after-tax money, and it grows completely tax-free. Withdrawals in retirement are tax-free. Best if you expect to be in a higher tax bracket later.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800 mb-1">Traditional IRA</p>
+                <p class="text-xs text-gray-600">Contributions may be tax-deductible now. You pay taxes when you withdraw in retirement. Better if you're in a high tax bracket today.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800 mb-1">HSA (Health Savings Account)</p>
+                <p class="text-xs text-gray-600">Triple tax-advantaged — contributes pre-tax, grows tax-free, and withdrawals for medical expenses are tax-free. In retirement, it functions like a Traditional IRA.</p>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 The order of operations</p>
+              <p class="text-sm text-gray-700">1) Get the full employer 401(k) match → 2) Max your Roth IRA ($7,000/year in 2025) → 3) Go back and max your 401(k) → 4) Open a regular brokerage account</p>
+            </div>`
+          },
+          {
+            title: 'Big Purchases: Homes & Cars',
+            icon: 'home',
+            content: `<p class="text-gray-600 mb-4">A home or car are probably the largest purchases of your life. Here's what to think about before signing anything.</p>
+            <p class="font-semibold text-emerald-800 mb-2">🏠 Buying a Home</p>
+            <ul class="space-y-2 text-sm text-gray-700 mb-4">
+              <li>• Aim for a down payment of at least 20% to avoid Private Mortgage Insurance (PMI), which adds to your monthly cost</li>
+              <li>• Your monthly housing costs should stay under 28% of your gross income (the "28% rule")</li>
+              <li>• Don't forget: property taxes, HOA fees, insurance, and maintenance add 1–3% of home value per year</li>
+              <li>• Get pre-approved before shopping — it shows sellers you're serious and clarifies your budget</li>
+            </ul>
+            <p class="font-semibold text-emerald-800 mb-2">🚗 Buying a Car</p>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>• Total car costs (payment + insurance + gas + maintenance) should be under 15% of take-home pay</li>
+              <li>• Used cars 2–4 years old offer the best value — you avoid the biggest depreciation hit</li>
+              <li>• Get pre-approved at a credit union before going to a dealership — dealers often mark up financing rates</li>
+              <li>• Negotiate the total price, not just the monthly payment</li>
+            </ul>`
+          }
+        ]
+      },
+
+      'mindset': {
+        title: 'Mindset',
+        emoji: '🧠',
+        tag: 'It Starts in Your Head',
+        desc: 'Your relationship with money is often emotional before it\'s mathematical. This module helps you understand why you make the financial decisions you do — and how to shift them.',
+        lessons: [
+          {
+            title: 'Why Money Feels So Hard (It\'s Not Just You)',
+            icon: 'brain',
+            content: `<p class="text-gray-600 mb-4">Most of us were never taught about money. Not in school, and often not at home. So the feelings of shame, anxiety, or confusion around finances? Those are completely normal responses to being unprepared for something everyone is expected to know.</p>
+            <div class="space-y-3 mb-4">
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Money scripts</p>
+                <p class="text-sm text-gray-600">These are the beliefs you absorbed growing up — things like "we don't talk about money," "rich people are greedy," or "I'm just bad with money." These scripts run in the background and shape every financial decision you make.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Financial trauma</p>
+                <p class="text-sm text-gray-600">Growing up in financial instability, poverty, or with financial abuse can create real trauma responses around money. Hoarding money out of fear, avoiding looking at accounts, or overspending to feel "normal" are all common coping patterns.</p>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 Ask yourself</p>
+              <p class="text-sm text-gray-700">What did your family believe about money when you were growing up? What emotions come up when you think about checking your bank account? Your answers are data, not flaws.</p>
+            </div>`
+          },
+          {
+            title: 'Overcoming Money Shame',
+            icon: 'sun',
+            content: `<p class="text-gray-600 mb-4">Shame makes you avoid looking at your finances. Avoidance makes things worse. The cycle is real — and breaking it is one of the most important financial moves you can make.</p>
+            <div class="steps-list space-y-4 mt-4">
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Name what you're avoiding.</strong> Debt? A bill you haven't opened? Your credit score? Just naming it takes some of its power away.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Look at the number — just once.</strong> The anticipation is almost always worse than the reality. You need accurate information to make a plan.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Separate the past from the future.</strong> Your current financial situation is the result of circumstances, decisions, and systems — not a verdict on your worth as a person.</div>
+              </div>
+              <div class="progress-step flex items-start gap-4">
+                <div></div>
+                <div><strong class="text-emerald-800">Find one small action.</strong> You don't need to fix everything today. Just one step forward — checking your balance, calling about a bill — builds momentum.</div>
+              </div>
+            </div>`
+          },
+          {
+            title: 'Building a Healthier Money Relationship',
+            icon: 'sparkles',
+            content: `<p class="text-gray-600 mb-4">Long-term financial health is built on habits and mindset, not one-time decisions. These shifts make a real difference over time.</p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Reframe "I can't afford it" to "I'm choosing not to prioritize this right now."</strong> It gives you agency instead of reinforcing scarcity.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Schedule regular "money dates."</strong> Once a week, spend 10 minutes reviewing your accounts. No judgment — just information.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Define what "enough" looks like for you.</strong> Without a personal definition, you'll always feel behind — because comparison has no finish line.</span></li>
+              <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 mt-1 flex-shrink-0" style="width:18px;height:18px;"></i><span><strong>Celebrate progress, not perfection.</strong> Paid off a small debt? Didn't overdraft this month? Those are wins worth acknowledging.</span></li>
+            </ul>`
+          }
+        ]
+      },
+
+      'misc': {
+        title: 'Misc',
+        emoji: '💡',
+        tag: 'The Stuff Nobody Tells You',
+        desc: 'Financial life doesn\'t fit neatly into categories. This module covers the random-but-important stuff that comes up in real life — insurance, scams, side hustles, and more.',
+        lessons: [
+          {
+            title: 'Insurance Basics: What You Actually Need',
+            icon: 'shield-check',
+            content: `<p class="text-gray-600 mb-4">Insurance is how you protect everything you've built. The goal is to cover risks you couldn't recover from financially, not to insure everything.</p>
+            <div class="space-y-3">
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Health Insurance 🏥</p>
+                <p class="text-sm text-gray-600">If your employer offers it, usually take it. If not, explore marketplace plans at healthcare.gov. At minimum, have a plan that covers catastrophic events. An unexpected hospitalization can cost $30,000+.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Renters Insurance 🏠</p>
+                <p class="text-sm text-gray-600">Costs $10–20/month and covers your belongings if there's theft, fire, or water damage. Also covers you if someone is injured in your apartment. Most people skip this — don't.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Auto Insurance 🚗</p>
+                <p class="text-sm text-gray-600">Required by law. Liability coverage protects others; collision and comprehensive protect your car. If your car is paid off and low value, you may be able to drop collision.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <p class="font-semibold text-gray-800 mb-1">Life Insurance 💛</p>
+                <p class="text-sm text-gray-600">Only needed if someone depends on your income (kids, partner, aging parent). Term life insurance is the simple, affordable option. Avoid whole life policies sold by most salespeople.</p>
+              </div>
+            </div>`
+          },
+          {
+            title: 'Spotting Financial Scams',
+            icon: 'alert-circle',
+            content: `<p class="text-gray-600 mb-4">Scammers are sophisticated. In 2024, Americans lost over $10 billion to fraud. Knowing the patterns protects you.</p>
+            <div class="warning-box rounded-xl p-5 mb-4">
+              <p class="font-semibold text-orange-800 mb-2">🚩 Red flags to watch for:</p>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• "Guaranteed returns" with no risk — legitimate investments always have risk</li>
+                <li>• Urgency pressure: "Act now or lose this opportunity forever"</li>
+                <li>• Requests to pay with gift cards, wire transfers, cryptocurrency, or Zelle to strangers</li>
+                <li>• Someone who contacted you first, offering to invest your money for you</li>
+                <li>• A job offer that asks you to receive money in your account and send it elsewhere (money mule scam)</li>
+                <li>• Fake IRS, Social Security, or bank calls demanding immediate payment</li>
+              </ul>
+            </div>
+            <div class="tip-box rounded-xl p-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 The rule</p>
+              <p class="text-sm text-gray-700">If someone you didn't contact is promising you money or asking you to move money, stop. Hang up, don't click the link, and verify independently using a phone number you look up yourself.</p>
+            </div>`
+          },
+          {
+            title: 'Side Hustles: What\'s Worth It (And What\'s Not)',
+            icon: 'zap',
+            content: `<p class="text-gray-600 mb-4">Side income can accelerate your financial goals — but not all side hustles are created equal. The key question: what's your effective hourly rate after expenses?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                <p class="font-semibold text-emerald-800 mb-1">High potential</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>• Freelance skills (design, writing, coding)</li>
+                  <li>• Tutoring or teaching what you know</li>
+                  <li>• Selling digital products (once-made, sell forever)</li>
+                  <li>• Pet sitting / dog walking via Rover</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-orange-50 border">
+                <p class="font-semibold text-orange-700 mb-1">Lower value after costs</p>
+                <ul class="text-xs text-gray-600 space-y-1">
+                  <li>• Food delivery (car wear, gas, slow hours)</li>
+                  <li>• Surveys and "get paid to" sites</li>
+                  <li>• MLM / "be your own boss" offers</li>
+                  <li>• Dropshipping without a marketing plan</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tip-box rounded-xl p-4">
+              <p class="font-semibold text-emerald-800 mb-1">💡 Don't forget taxes</p>
+              <p class="text-sm text-gray-700">Self-employment income is taxed differently. Set aside 25–30% of every payment you receive, and look into quarterly estimated taxes to avoid a surprise bill in April.</p>
+            </div>`
+          }
+        ]
+      }
+
+    };
+
+    function showModule(id) {
+      const mod = modules[id];
+      if (!mod) return;
+
+      const lessonsHTML = mod.lessons.map((lesson, i) => `
+        <details class="bg-white rounded-2xl shadow-sm border border-emerald-50 overflow-hidden" ${i === 0 ? 'open' : ''}>
+          <summary class="flex items-center justify-between gap-4 p-6 hover:bg-emerald-50/40 transition-colors">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgb(209, 250, 229);">
+                <i data-lucide="${lesson.icon}" style="width:18px;height:18px;color:#065f46;"></i>
+              </div>
+              <span class="font-semibold text-gray-800">${lesson.title}</span>
+            </div>
+            <i data-lucide="chevron-down" class="chevron flex-shrink-0 text-emerald-600" style="width:20px;height:20px;"></i>
+          </summary>
+          <div class="px-6 pb-6 pt-2 lesson-card ml-6">
+            ${lesson.content}
+          </div>
+        </details>
+      `).join('');
+
+      document.getElementById('module-detail-content').innerHTML = `
+        <div class="mb-8">
+          <span class="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4" style="background: rgb(209,250,229); color: rgb(6,95,70);">${mod.tag}</span>
+          <h1 class="font-display text-4xl font-bold text-emerald-900 mb-3">${mod.emoji} ${mod.title}</h1>
+          <p class="text-gray-600 text-lg leading-relaxed max-w-2xl">${mod.desc}</p>
+        </div>
+        <div class="space-y-4">
+          ${lessonsHTML}
+        </div>
+        <div class="mt-10 p-6 rounded-2xl text-center" style="background: rgb(240,253,244);">
+          <p class="text-emerald-800 font-medium mb-1">Ready to keep learning?</p>
+          <p class="text-sm text-gray-600 mb-4">Explore another module or reach out if you have questions.</p>
+          <button onclick="hideModule()" class="inline-block px-8 py-3 rounded-full font-semibold text-sm transition-all hover:scale-105" style="background: rgb(20,90,74); color: white;">← Back to All Modules</button>
+        </div>
+      `;
+
+      document.getElementById('main-view').classList.add('hidden');
+      document.getElementById('module-view').classList.remove('hidden');
+      window.scrollTo(0, 0);
+      lucide.createIcons();
+    }
+
+    function hideModule() {
+      document.getElementById('module-view').classList.add('hidden');
+      document.getElementById('main-view').classList.remove('hidden');
+      document.getElementById('modules').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
